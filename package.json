@@ -1,0 +1,23 @@
+{
+  "name": "minimal-csv-formatter",
+  "version": "1.0.0",
+  "description": "Transform arrays into CSV strings.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "prepublish": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soroushj/node-minimal-csv-formatter.git"
+  },
+  "keywords": [
+    "csv"
+  ],
+  "author": "Soroush Javadi <soroush.javadi@gmail.com> (https://github.com/soroushj)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/soroushj/node-minimal-csv-formatter/issues"
+  },
+  "homepage": "https://github.com/soroushj/node-minimal-csv-formatter#readme"
+}
