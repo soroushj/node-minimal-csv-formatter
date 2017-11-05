@@ -1,54 +1,53 @@
+const { expect } = require('chai');
 const csv = require('.');
 
-const tests = [
-  {
-    input: undefined,
-    expected: ''
-  },
-  {
-    input: null,
-    expected: ''
-  },
-  {
-    input: [],
-    expected: ''
-  },
-  {
-    input: [
-      undefined,
-      null,
-      [],
-    ],
-    expected: ''
-  },
-  {
-    input: ['ab', 'a,b', 'a"b', 'a\rb', 'a\nb', 'a\r\nb', 0, false, '', undefined, null],
-    expected: 'ab,"a,b","a""b","a\rb","a\nb","a\r\nb",0,false,,,\n'
-  },
-  {
-    input: [
-      ['a','b'],
+describe('minimal-csv-formatter', function () {
+  it('should convert `undefined` to an empty string', function () {
+    let result = csv(undefined);
+    expect(result).to.equal('');
+  });
+  it('should convert `null` to an empty string', function () {
+    let result = csv(null);
+    expect(result).to.equal('');
+  });
+  it('should convert an empty array to an empty string', function () {
+    let result = csv([]);
+    expect(result).to.equal('');
+  });
+  it('should only and only quote fields containing commas, double quotes, and/or newlines', function () {
+    let result = csv(['a;b', 'a\'b', 'a,b', 'a"b', 'a\rb', 'a\nb']);
+    expect(result).to.equal('a;b,a\'b,"a,b","a""b","a\rb","a\nb"\n');
+  });
+  it('should work well with non-string values', function () {
+    let result = csv([0, false]);
+    expect(result).to.equal('0,false\n');
+  });
+  it('should treat undefined/null values as empty fields', function () {
+    let result = csv([undefined, null]);
+    expect(result).to.equal(',\n');
+  });
+  it('should treat an array of arrays as multiple rows', function () {
+    let result = csv([
+      ['a', 'b'],
       [1, 2],
-      [undefined, null],
+    ]);
+    expect(result).to.equal('a,b\n1,2\n');
+  });
+  it('should ignore empty arrays and undefined/null rows', function () {
+    let result = csv([
+      ['a', 'b'],
       undefined,
       null,
       [],
-    ],
-    expected: 'a,b\n1,2\n,\n'
-  },
-];
-
-let exitCode = 0;
-tests.forEach((test, i) => {
-  let output = csv(test.input);
-  if (output !== test.expected) {
-    exitCode = 1;
-    console.log(`Test #${i} failed`);
-    console.log('For:', JSON.stringify(test.input));
-    console.log('Expected:', JSON.stringify(test.expected));
-    console.log('Got:', JSON.stringify(output));
-    console.log();
-  }
+    ]);
+    expect(result).to.equal('a,b\n');
+  });
+  it('should return an empty string for an array of empty rows', function () {
+    let result = csv([
+      undefined,
+      null,
+      [],
+    ]);
+    expect(result).to.equal('');
+  });
 });
-
-process.exit(exitCode);
