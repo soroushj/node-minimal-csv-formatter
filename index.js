@@ -27,7 +27,7 @@ module.exports = rowOrRows => {
     return '';
   }
   if (!Array.isArray(rowOrRows)) {
-    throw new Error('Invalid row(s) - expected an array, got: ' + JSON.stringify(row));
+    throw new Error('Invalid row(s) - expected an array, got: ' + JSON.stringify(rowOrRows));
   }
   let containsArray = false;
   let containsValue = false;
