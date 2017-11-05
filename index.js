@@ -2,6 +2,9 @@ const csvField = field => {
   if (field === undefined || field === null) {
     return '';
   }
+  if (typeof field.toString !== 'function') {
+    throw new Error('Invalid field - expected a toString-able object, got: ' + JSON.stringify(field));
+  }
   let escaped = field.toString().replace(/\0/g, '').replace(/"/g, '""');
   if (escaped.match(/[,"\r\n]/)) {
     return '"' + escaped + '"';
