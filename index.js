@@ -25,6 +25,11 @@ const csvRow = row => {
   return row.map(csvField).join(',') + '\n';
 };
 
+/**
+ * Transform an array of (arrays of) values into equivalent CSV string.
+ * @param {any[]} rowOrRows An array of values for a single row, or an array of arrays of values for multiple rows.
+ * @returns {string} Equivalent CSV string.
+ */
 module.exports = rowOrRows => {
   if (rowOrRows === undefined || rowOrRows === null) {
     return '';
