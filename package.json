@@ -1,6 +1,6 @@
 {
   "name": "minimal-csv-formatter",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Transform arrays into CSV strings.",
   "main": "index.js",
   "scripts": {
