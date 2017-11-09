@@ -18,13 +18,13 @@ let multipleRows = csv([
 ]);
 // '1,2\n3,4\n'
 
-let emptyFields = csv([undefined, null]);
+let emptyFields = csv([null, undefined]);
 // ',\n'
 
 let emptyRows = csv([
-  undefined,
-  null,
   [],
+  null,
+  undefined,
 ]);
 // ''
 ```
