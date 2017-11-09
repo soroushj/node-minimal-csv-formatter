@@ -6,23 +6,25 @@ Transforms arrays into equivalent CSV strings. Conforms to [RFC 4180](https://to
 
 ## Usage
 
-    const csv = require('minimal-csv-formatter');
+```javascript
+const csv = require('minimal-csv-formatter');
 
-    let singleRow = csv(['x', 'y']);
-    // 'x,y\n'
+let singleRow = csv(['x', 'y']);
+// 'x,y\n'
 
-    let multipleRows = csv([
-      [1, 2],
-      [3, 4],
-    ]);
-    // '1,2\n3,4\n'
+let multipleRows = csv([
+  [1, 2],
+  [3, 4],
+]);
+// '1,2\n3,4\n'
 
-    let emptyFields = csv([undefined, null]);
-    // ',\n'
+let emptyFields = csv([undefined, null]);
+// ',\n'
 
-    let emptyRows = csv([
-      undefined,
-      null,
-      [],
-    ]);
-    // ''
+let emptyRows = csv([
+  undefined,
+  null,
+  [],
+]);
+// ''
+```
