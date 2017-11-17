@@ -36,13 +36,13 @@ module.exports = rowOrRows => {
   }
   let containsArray = false;
   let containsValue = false;
-  for (let i = 0; i < rowOrRows.length; ++i) {
-    if (Array.isArray(rowOrRows[i])) {
+  rowOrRows.forEach(valueOrRow => {
+    if (Array.isArray(valueOrRow)) {
       containsArray = true;
-    } else if (rowOrRows[i] !== undefined && rowOrRows[i] !== null) {
+    } else if (valueOrRow !== undefined && valueOrRow !== null) {
       containsValue = true;
     }
-  }
+  });
   if (containsArray && !containsValue) {
     return rowOrRows.map(csvRow).join('');
   }
